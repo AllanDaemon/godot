@@ -531,7 +531,7 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 			script_instance->get_script()->get_path().utf8().get_data());
 		OS::get_singleton()->print(
 			"REA Obj\tscript_instance->get_script()->get_base_script() = %p\n",
-			script_instance->get_script()->get_base_script());
+			&(*(script_instance->get_script()->get_base_script())));
 		
 		p_list->push_back(PropertyInfo(Variant::NIL, "Script Variables", PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
 		script_instance->get_property_list(p_list);
