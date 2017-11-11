@@ -73,8 +73,8 @@ void PropertySelector::_sbox_input(const Ref<InputEvent> &p_ie) {
 
 void PropertySelector::_update_search() {
 	OS::get_singleton()->print("REA\tinstance=%p\n", instance); 
-	OS::get_singleton()->print("REA\tinstance->base_type=%s\n", instance->base_type.c_str());
-	OS::get_singleton()->print("REA\tinstance->type.get_type_name()=%s\n", instance->type.get_type_name().c_str());
+	OS::get_singleton()->print("REA\tbase_type=%s\n", base_type.c_str());
+	OS::get_singleton()->print("REA\ttype.get_type_name()=%s\n", type.get_type_name().c_str());
 
 	if (properties)
 		set_title(TTR("Select Property"));
