@@ -520,6 +520,16 @@ Variant Object::get(const StringName &p_name, bool *r_valid) const {
 void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) const {
 
 	if (script_instance && p_reversed) {
+
+		OS::get_singleton()->print("REA Obj\tscript_instance=%p\n", script_instance); 
+
+		OS::get_singleton()->print(
+			"REA Obj\tscript_instance->script.get_name()=%s\n",
+			script_instance->script.get_name().c_str());
+		OS::get_singleton()->print(
+			"REA Obj\tscript_instance->script.get_path()=%s\n",
+			script_instance->script.get_path().c_str());
+
 		p_list->push_back(PropertyInfo(Variant::NIL, "Script Variables", PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
 		script_instance->get_property_list(p_list);
 	}
@@ -535,7 +545,18 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 #endif
 	if (!metadata.empty())
 		p_list->push_back(PropertyInfo(Variant::DICTIONARY, "__meta__", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NOEDITOR | PROPERTY_USAGE_STORE_IF_NONZERO));
+
 	if (script_instance && !p_reversed) {
+
+		OS::get_singleton()->print("REA Obj\tscript_instance=%p\n", script_instance); 
+
+		OS::get_singleton()->print(
+			"REA Obj\tscript_instance->script.get_name()=%s\n",
+			script_instance->script.get_name().c_str());
+		OS::get_singleton()->print(
+			"REA Obj\tscript_instance->script.get_path()=%s\n",
+			script_instance->script.get_path().c_str());
+
 		p_list->push_back(PropertyInfo(Variant::NIL, "Script Variables", PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
 		script_instance->get_property_list(p_list);
 	}
