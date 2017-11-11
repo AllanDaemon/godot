@@ -1,5 +1,4 @@
-/*************************************************************************/
-/*  property_selector.cpp                                                */
+/*************************************************************************/ /*  property_selector.cpp                                                */
 /*************************************************************************/
 /*                       This file is part of:                           */
 /*                           GODOT ENGINE                                */
@@ -29,6 +28,7 @@
 /*************************************************************************/
 #include "property_selector.h"
 
+#include "os.h"
 #include "editor_scale.h"
 #include "os/keyboard.h"
 
@@ -72,6 +72,9 @@ void PropertySelector::_sbox_input(const Ref<InputEvent> &p_ie) {
 }
 
 void PropertySelector::_update_search() {
+	OS::get_singleton()->print("REA\tinstance=%p\n", instance); 
+	OS::get_singleton()->print("REA\tinstance->base_type=%s\n", instance->base_type.c_str());
+	OS::get_singleton()->print("REA\tinstance->type.get_type_name()=%s\n", instance->type.get_type_name().c_str());
 
 	if (properties)
 		set_title(TTR("Select Property"));
@@ -108,6 +111,7 @@ void PropertySelector::_update_search() {
 
 			StringName base = base_type;
 			while (base) {
+				OS::get_singleton()->print("REA\tbase=%s\n");
 				props.push_back(PropertyInfo(Variant::NIL, base, PROPERTY_HINT_NONE, "", PROPERTY_USAGE_CATEGORY));
 				ClassDB::get_property_list(base, &props, true);
 				base = ClassDB::get_parent_class(base);
