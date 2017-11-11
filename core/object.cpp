@@ -534,7 +534,7 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 			*(script_instance->get_script()->get_base_script()));
 		OS::get_singleton()->print(
 			"REA Obj\tscript_instance->owner = %p\n",
-			*(script_instance->owner));
+			*((PlaceHolderScriptInstance)script_instance->owner));
 
 		{
 		const StringName _class_name_SN = script_instance->owner->_get_class_namev()
