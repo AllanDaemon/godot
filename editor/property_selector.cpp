@@ -28,7 +28,7 @@
 /*************************************************************************/
 #include "property_selector.h"
 
-#include "os.h"
+#include "core/os/os.h"
 #include "editor_scale.h"
 #include "os/keyboard.h"
 
