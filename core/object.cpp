@@ -521,14 +521,20 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 
 	if (script_instance && p_reversed) {
 
-		OS::get_singleton()->print("REA Obj\tscript_instance=%p\n", script_instance); 
+		OS::get_singleton()->print("REA Obj\tscript_instance = %p\n", script_instance); 
 
 		OS::get_singleton()->print(
-			"REA Obj\tscript_instance->get_script()->get_name()=%s\n",
+			"REA Obj\tscript_instance->get_script()->get_name() = %s\n",
 			script_instance->get_script()->get_name().c_str());
 		OS::get_singleton()->print(
-			"REA Obj\tscript_instance->get_script()->get_path()=%s\n",
+			"REA Obj\tscript_instance->get_script()->get_path() = %s\n",
 			script_instance->get_script()->get_path().c_str());
+		
+		OS::get_singleton()->print(
+			"REA Obj\tscript_instance->get_script()->get_path() = ");
+		OS::get_singleton()->print(
+			script_instance->get_script()->get_path().c_str());
+		OS::get_singleton()->print("\n");
 
 		p_list->push_back(PropertyInfo(Variant::NIL, "Script Variables", PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
 		script_instance->get_property_list(p_list);
