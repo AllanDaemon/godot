@@ -534,7 +534,7 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 			*(script_instance->get_script()->get_base_script()));
 		OS::get_singleton()->print(
 			"REA Obj\tscript_instance->owner = %p\n",
-			*(  ( (PlaceHolderScriptInstance) script_instance
+			*(  ( (PlaceHolderScriptInstance * const) script_instance
 				)->owner));
 
 		{
