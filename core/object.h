@@ -539,6 +539,8 @@ protected:
 	friend class ClassDB;
 	virtual void _validate_property(PropertyInfo &property) const;
 
+	void _script_property_as_category(List<PropertyInfo> *p_list);
+
 public: //should be protected, but bug in clang++
 	static void initialize_class();
 	_FORCE_INLINE_ static void register_custom_data_to_otdb(){};
