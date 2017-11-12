@@ -520,6 +520,8 @@ Variant Object::get(const StringName &p_name, bool *r_valid) const {
 
 void Object::_script_property_as_category(List<PropertyInfo> *p_list) const
 {
+	OS::get_singleton()->print("REA Obj\tCUSTOM FUNCTION: %p\n", script_instance);
+
 	PlaceHolderScriptInstance * instance = dynamic_cast<PlaceHolderScriptInstance*>(script_instance);
 
 	if (instance!=NULL && instance->get_owner())
