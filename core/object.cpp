@@ -579,17 +579,9 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 
 			NodePath node_path = NodePath(script_instance->get_script()->get_path());
 		}
-
-		// {
-		// const StringName _class_name_SN = script_instance->owner->_get_class_namev()
-		// const char * _class_name_ptr = _class_name_SN.data_unique_pointer()
-		// OS::get_singleton()->print(
-		// 	"REA Obj\tscript_instance->owner.class_name = %s\n",
-		// 	_class_name_ptr);
-		// }
 		
-		// p_list->push_back(PropertyInfo(Variant::NIL, "Script Variables", PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
 		#if 0
+		// p_list->push_back(PropertyInfo(Variant::NIL, "Script Variables", PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
 		p_list->push_back(PropertyInfo(Variant::NIL, script_instance->get_script()->get_path().utf8().get_data(), PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
 
 		script_instance->get_property_list(p_list);
