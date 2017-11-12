@@ -536,11 +536,20 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 		{
 			PlaceHolderScriptInstance * instance = dynamic_cast<PlaceHolderScriptInstance*>(script_instance);
 			if (instance==NULL)
-				OS::get_singleton()->print("\t\t    ScriptInstance\n");
+				OS::get_singleton()->print("REA Obj\t\t    ScriptInstance\n");
 			else
+			{
+				Object * owner = instance->get_owner();
 				OS::get_singleton()->print(
-					"\t\t!!! PlaceHolderScriptInstance\towner:%p",
-					instance->get_owner());
+					"REA Obj\t\t!!! PlaceHolderScriptInstance\towner:%p\n",
+					owner);
+
+				const StringName _class_name_SN = owner->_get_class_namev();
+				const char * _class_name_ptr = _class_name_SN.data_unique_pointer()
+				OS::get_singleton()->print(
+					"REA Obj\t\towner->_get_class_namev() = %p\n",
+					_class_name_ptr);
+			}
 		}
 
 		// {
