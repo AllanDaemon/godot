@@ -532,18 +532,22 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 		OS::get_singleton()->print(
 			"REA Obj\tscript_instance->get_script()->get_base_script() = %p\n",
 			*(script_instance->get_script()->get_base_script()));
-		OS::get_singleton()->print(
-			"REA Obj\tscript_instance->owner = %p\n",
-			*(  ( (PlaceHolderScriptInstance * const) *script_instance
-				)->owner));
 
 		{
-		const StringName _class_name_SN = script_instance->owner->_get_class_namev()
-		const char * _class_name_ptr = _class_name_SN.data_unique_pointer()
-		OS::get_singleton()->print(
-			"REA Obj\tscript_instance->owner.class_name = %s\n",
-			_class_name_ptr);
+			PlaceHolderScriptInstance * instance = dynamic_cast<PlaceHolderScriptInstance*>(script_instance);
+			if (instance==NULL)
+				OS::get_singleton()->print("\t\t    ScriptInstance\n");
+			else
+				OS::get_singleton()->print("\t\t!!! PlaceHolderScriptInstance\n");
 		}
+
+		// {
+		// const StringName _class_name_SN = script_instance->owner->_get_class_namev()
+		// const char * _class_name_ptr = _class_name_SN.data_unique_pointer()
+		// OS::get_singleton()->print(
+		// 	"REA Obj\tscript_instance->owner.class_name = %s\n",
+		// 	_class_name_ptr);
+		// }
 		
 		p_list->push_back(PropertyInfo(Variant::NIL, "Script Variables", PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
 		script_instance->get_property_list(p_list);
