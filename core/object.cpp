@@ -528,7 +528,7 @@ void Object::_script_property_as_category(List<PropertyInfo> *p_list) const
 	// Script *base = &(script_instance->get_script()->get_base_script());
 	Ref<Script> base = script_instance->get_script()->get_base_script();
 
-	if (*base)
+	if (script_instance && *base)
 	{
 		assert(script_instance->get_script() != base.get_ref_ptr());
 		base->_script_property_as_category(p_list);
