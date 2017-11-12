@@ -38,6 +38,8 @@
 #include "script_language.h"
 #include "translation.h"
 
+#include <cstdlib>
+
 #ifdef DEBUG_ENABLED
 
 struct _ObjectDebugLock {
@@ -526,6 +528,10 @@ void Object::_script_property_as_category(List<PropertyInfo> *p_list) const
 
 	if (instance!=NULL && instance->get_owner())
 	{
+		if (instance == instance->get_owner()){
+			OS::get_singleton()->print("\nASSERTION ERROR!\n");
+			exit(-1);
+		}
 		instance->get_owner()->_script_property_as_category(p_list);
 	}
 
