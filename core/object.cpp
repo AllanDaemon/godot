@@ -38,7 +38,7 @@
 #include "script_language.h"
 #include "translation.h"
 
-#include <cstdlib>
+#include <cassert>
 
 #ifdef DEBUG_ENABLED
 
@@ -524,15 +524,13 @@ void Object::_script_property_as_category(List<PropertyInfo> *p_list) const
 {
 	OS::get_singleton()->print("REA Obj\tCUSTOM FUNCTION: %p\n", script_instance);
 
-	PlaceHolderScriptInstance * instance = dynamic_cast<PlaceHolderScriptInstance*>(script_instance);
+	// PlaceHolderScriptInstance * instance = dynamic_cast<PlaceHolderScriptInstance*>(script_instance);
+	Script *base = static_cast<Script *>(script_instance->get_script()->get_base_script());
 
-	if (instance!=NULL && instance->get_owner())
+	if (base)
 	{
-		if ( this == instance->get_owner()){
-			OS::get_singleton()->print("\nASSERTION ERROR!\n");
-			exit(-1);
-		}
-		instance->get_owner()->_script_property_as_category(p_list);
+		assert(script_instance->get_script() != base);
+		base->_script_property_as_category(p_list);
 	}
 
 	p_list->push_back(PropertyInfo(Variant::NIL, script_instance->get_script()->get_path().utf8().get_data(), PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
