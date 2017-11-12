@@ -524,7 +524,7 @@ void Object::_script_property_as_category(List<PropertyInfo> *p_list) const
 
 	if (instance!=NULL && instance->get_owner())
 	{
-		instance->get_owner()->_script_property_as_category(p_lists):
+		instance->get_owner()->_script_property_as_category(p_lists);
 	}
 
 	p_list->push_back(PropertyInfo(Variant::NIL, script_instance->get_script()->get_path().utf8().get_data(), PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
