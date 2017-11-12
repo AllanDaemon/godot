@@ -544,8 +544,8 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 					"REA Obj\t\t!!! PlaceHolderScriptInstance\towner:%p\n",
 					owner);
 
-				const StringName *_class_name_SN = owner->get_class_name();
-				const char * _class_name_ptr = (const char *)_class_name_SN->data_unique_pointer();
+				const StringName _class_name_SN = owner->get_class_name();
+				const char * _class_name_ptr = (const char *)_class_name_SN.data_unique_pointer();
 				OS::get_singleton()->print(
 					"REA Obj\t\towner->get_class_name() = %s\n",
 					_class_name_ptr);
