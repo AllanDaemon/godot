@@ -520,11 +520,19 @@ Variant Object::get(const StringName &p_name, bool *r_valid) const {
 
 void Object::_script_property_as_category(List<PropertyInfo> *p_list) const
 {
+	PlaceHolderScriptInstance * instance = dynamic_cast<PlaceHolderScriptInstance*>(script_instance);
+
+	if (instance!=NULL && instance->get_owner())
+	{
+		instance->get_owner()->_script_property_as_category(p_lists):
+	}
+
 	p_list->push_back(PropertyInfo(Variant::NIL, script_instance->get_script()->get_path().utf8().get_data(), PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
 	script_instance->get_property_list(p_list);
 }
 
 void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) const {
+
 
 	if (script_instance && p_reversed) {
 
