@@ -144,6 +144,7 @@ opts.Add('platform', "Target platform (%s)" % ('|'.join(platform_list), ), '')
 opts.Add(EnumVariable('target', "Compilation target", 'debug', ('debug', 'release_debug', 'release')))
 opts.Add(BoolVariable('tools', "Build the tools a.k.a. the Godot editor", True))
 opts.Add(BoolVariable('use_lto', 'Use linking time optimization', False))
+opts.Add(BoolVariable('gdb', 'Produce debug information specific to gdb', False))
 
 # Components
 opts.Add(BoolVariable('deprecated', "Enable deprecated features", True))
@@ -228,6 +229,13 @@ sys.modules.pop('detect')
 if (env_base['target'] == 'debug'):
     env_base.Append(CPPFLAGS=['-DDEBUG_MEMORY_ALLOC'])
     env_base.Append(CPPFLAGS=['-DSCI_NAMESPACE'])
+    if env_base['gdb']:
+        env_base.Append(CPPFLAGS=['-ggdb'])
+        env_base.Append(CPPFLAGS=['-ggdb3'])
+    else:
+        env_base.Append(CPPFLAGS=['-g'])
+        env_base.Append(CPPFLAGS=['-g3'])
+
 
 if not env_base['deprecated']:
     env_base.Append(CPPFLAGS=['-DDISABLE_DEPRECATED'])
