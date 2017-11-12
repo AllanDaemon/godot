@@ -528,7 +528,7 @@ void Object::_script_property_as_category(List<PropertyInfo> *p_list) const
 
 	if (instance!=NULL && instance->get_owner())
 	{
-		if (instance == instance->get_owner()){
+		if (static_cast<Object*>(instance) == instance->get_owner()){
 			OS::get_singleton()->print("\nASSERTION ERROR!\n");
 			exit(-1);
 		}
