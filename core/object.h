@@ -539,7 +539,7 @@ protected:
 	friend class ClassDB;
 	virtual void _validate_property(PropertyInfo &property) const;
 
-	void _script_property_as_category(List<PropertyInfo> *p_list);
+	void _script_property_as_category(List<PropertyInfo> *p_list) const;
 
 public: //should be protected, but bug in clang++
 	static void initialize_class();

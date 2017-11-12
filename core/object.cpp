@@ -518,7 +518,7 @@ Variant Object::get(const StringName &p_name, bool *r_valid) const {
 }
 
 
-void Object::_script_property_as_category(List<PropertyInfo> *p_list)
+void Object::_script_property_as_category(List<PropertyInfo> *p_list) const
 {
 	p_list->push_back(PropertyInfo(Variant::NIL, script_instance->get_script()->get_path().utf8().get_data(), PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
 	script_instance->get_property_list(p_list);
