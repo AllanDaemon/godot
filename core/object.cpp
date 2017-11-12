@@ -526,11 +526,11 @@ void Object::_script_property_as_category(List<PropertyInfo> *p_list) const
 
 	// PlaceHolderScriptInstance * instance = dynamic_cast<PlaceHolderScriptInstance*>(script_instance);
 	// Script *base = &(script_instance->get_script()->get_base_script());
-	Script *base = &(*(script_instance->get_script()->get_base_script()));
+	Ref<Script> base = script_instance->get_script()->get_base_script();
 
 	if (base)
 	{
-		assert(script_instance->get_script() != base);
+		assert(script_instance->get_script() != base.get_ref_ptr());
 		base->_script_property_as_category(p_list);
 	}
 
