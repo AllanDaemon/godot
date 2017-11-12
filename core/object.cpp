@@ -528,7 +528,7 @@ void Object::_script_property_as_category(List<PropertyInfo> *p_list) const
 
 	if (instance!=NULL && instance->get_owner())
 	{
-		if (static_cast<Object*>(instance) == instance->get_owner()){
+		if (static_cast<Object*>(this) == instance->get_owner()){
 			OS::get_singleton()->print("\nASSERTION ERROR!\n");
 			exit(-1);
 		}
@@ -544,6 +544,7 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 
 	if (script_instance && p_reversed) {
 
+		OS::get_singleton()->print("REA Obj\tthis = %p\n", this); 
 		OS::get_singleton()->print("REA Obj\tscript_instance = %p\n", script_instance); 
 
 		OS::get_singleton()->print(
