@@ -538,7 +538,9 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 			if (instance==NULL)
 				OS::get_singleton()->print("\t\t    ScriptInstance\n");
 			else
-				OS::get_singleton()->print("\t\t!!! PlaceHolderScriptInstance\towner:%p", instance->owner);
+				OS::get_singleton()->print(
+					"\t\t!!! PlaceHolderScriptInstance\towner:%p",
+					instance->get_owner());
 		}
 
 		// {
