@@ -525,7 +525,8 @@ void Object::_script_property_as_category(List<PropertyInfo> *p_list) const
 	OS::get_singleton()->print("REA Obj\tCUSTOM FUNCTION: %p\n", script_instance);
 
 	// PlaceHolderScriptInstance * instance = dynamic_cast<PlaceHolderScriptInstance*>(script_instance);
-	Script *base = &(script_instance->get_script()->get_base_script());
+	// Script *base = &(script_instance->get_script()->get_base_script());
+	Script *base = &(*(script_instance->get_script()->get_base_script()));
 
 	if (base)
 	{
