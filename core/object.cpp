@@ -560,7 +560,7 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 			"REA Obj\tscript_instance->get_script()->get_base_script() = %p\n",
 			*(script_instance->get_script()->get_base_script()));
 
-		{List<PropertyInfo> properties = List<PropertyInfo>()
+		{List<PropertyInfo> properties = List<PropertyInfo>();
 		for (const List<PropertyInfo>::Element *E = properties.front(); E; E = E->next()) {
 			PropertyInfo pinfo = E->get();
 				OS::get_singleton()->print("REA Obj:\tProp:%s\n", pinfo.name);
