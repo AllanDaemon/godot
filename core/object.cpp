@@ -519,7 +519,7 @@ Variant Object::get(const StringName &p_name, bool *r_valid) const {
 	}
 }
 
-void _script_property_as_category(List<PropertyInfo> *p_list) const {}
+void _script_property_as_category(List<PropertyInfo> *p_list) {}
 
 #if 0
 
