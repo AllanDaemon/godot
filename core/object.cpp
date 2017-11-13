@@ -519,8 +519,10 @@ Variant Object::get(const StringName &p_name, bool *r_valid) const {
 	}
 }
 
-void _script_property_as_category(Script script_instance, List<PropertyInfo> *p_list) const
+void _script_property_as_category(Script _script_instance, List<PropertyInfo> *p_list) const
 {}
+
+#if 0
 
 void __script_property_as_category(Script script, List<PropertyInfo> *p_list) const
 {
@@ -539,11 +541,12 @@ void __script_property_as_category(Script script, List<PropertyInfo> *p_list) co
 	p_list->push_back(PropertyInfo(Variant::NIL, script->get_path().utf8().get_data(), PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
 	script_instance->get_property_list(p_list);
 }
+#endif
 
 void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) const {
 
 
-	if (script_instance && p_reversed) {
+	if (script_instance && p_reversed) {	
 
 		OS::get_singleton()->print("REA Obj\tthis = %p\n", this); 
 		OS::get_singleton()->print("REA Obj\tscript_instance = %p\n", script_instance); 
@@ -600,7 +603,7 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 		script_instance->get_property_list(p_list);
 		#endif
 
-		_script_property_as_category(p_list);
+		// _script_property_as_category(p_list);
 	}
 
 	_get_property_listv(p_list, p_reversed);
