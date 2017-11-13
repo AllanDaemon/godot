@@ -519,22 +519,24 @@ Variant Object::get(const StringName &p_name, bool *r_valid) const {
 	}
 }
 
+void _script_property_as_category(Script script_instance, List<PropertyInfo> *p_list) const
+{}
 
-void Object::_script_property_as_category(List<PropertyInfo> *p_list) const
+void __script_property_as_category(Script script, List<PropertyInfo> *p_list) const
 {
 	OS::get_singleton()->print("REA Obj\tCUSTOM FUNCTION: %p\n", script_instance);
 
 	// PlaceHolderScriptInstance * instance = dynamic_cast<PlaceHolderScriptInstance*>(script_instance);
 	// Script *base = &(script_instance->get_script()->get_base_script());
-	Ref<Script> base = script_instance->get_script()->get_base_script();
+	Ref<Script> base = script->get_base_script();
 
-	if (script_instance && *base)
+	if (script && *base)
 	{
-		assert(script_instance->get_script() != base.get_ref_ptr());
-		base->_script_property_as_category(p_list);
+		assert(script != base.get_ref_ptr());
+		__script_property_as_category(base, p_list);
 	}
 
-	p_list->push_back(PropertyInfo(Variant::NIL, script_instance->get_script()->get_path().utf8().get_data(), PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
+	p_list->push_back(PropertyInfo(Variant::NIL, script->get_path().utf8().get_data(), PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
 	script_instance->get_property_list(p_list);
 }
 
@@ -555,6 +557,11 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 		OS::get_singleton()->print(
 			"REA Obj\tscript_instance->get_script()->get_base_script() = %p\n",
 			*(script_instance->get_script()->get_base_script()));
+
+		for (const List<PropertyInfo>::Element *E = properties.front(); E; E = E->next()) {
+			PropertyInfo pinfo = E->get();
+				OS::get_singleton()->print("REA Obj:\tProp:%s\n", pinfo.name);
+		}
 
 		{
 			PlaceHolderScriptInstance * instance = dynamic_cast<PlaceHolderScriptInstance*>(script_instance);
