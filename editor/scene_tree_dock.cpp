@@ -1953,9 +1953,9 @@ SceneTreeDock::SceneTreeDock(EditorNode *p_editor, Node *p_scene_root, EditorSel
 	button_add = tb;
 
 	tb = memnew(ToolButton);
-	tb->connect("pressed", this, "_tool_selected", make_binds(TOOL_INSTANCE, false));
-	tb->set_tooltip(TTR("Instance a scene file as a Node. Creates an inherited scene if no root node exists."));
-	tb->set_shortcut(ED_GET_SHORTCUT("scene_tree/instance_scene"));
+	// tb->connect("pressed", this, "_tool_selected", make_binds(TOOL_INSTANCE, false));
+	// tb->set_tooltip(TTR("Instance a scene file as a Node. Creates an inherited scene if no root node exists."));
+	// tb->set_shortcut(ED_GET_SHORTCUT("scene_tree/instance_scene"));
 	filter_hbc->add_child(tb);
 	button_instance = tb;
 
