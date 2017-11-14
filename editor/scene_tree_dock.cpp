@@ -746,7 +746,7 @@ void SceneTreeDock::_notification(int p_what) {
 				scene_tree->connect("node_changed", canvas_item_plugin->get_canvas_item_editor()->get_viewport_control(), "update");
 			}
 			button_add->set_icon(get_icon("Add", "EditorIcons"));
-			button_instance->set_icon(get_icon("Instance", "EditorIcons"));
+			button_instance->set_icon(get_icon("ScriptRemove", "EditorIcons"));
 			button_create_script->set_icon(get_icon("ScriptCreate", "EditorIcons"));
 			button_clear_script->set_icon(get_icon("ScriptRemove", "EditorIcons"));
 
@@ -765,7 +765,7 @@ void SceneTreeDock::_notification(int p_what) {
 		} break;
 		case EditorSettings::NOTIFICATION_EDITOR_SETTINGS_CHANGED: {
 			button_add->set_icon(get_icon("Add", "EditorIcons"));
-			button_instance->set_icon(get_icon("Instance", "EditorIcons"));
+			button_instance->set_icon(get_icon("ScriptCreate", "EditorIcons"));
 			button_create_script->set_icon(get_icon("ScriptCreate", "EditorIcons"));
 			button_clear_script->set_icon(get_icon("ScriptRemove", "EditorIcons"));
 
@@ -1951,6 +1951,13 @@ SceneTreeDock::SceneTreeDock(EditorNode *p_editor, Node *p_scene_root, EditorSel
 	tb->set_shortcut(ED_GET_SHORTCUT("scene_tree/add_child_node"));
 	filter_hbc->add_child(tb);
 	button_add = tb;
+
+	tb = memnew(ToolButton);
+	tb->connect("pressed", this, "_tool_selected", make_binds(TOOL_INSTANCE, false));
+	tb->set_tooltip(TTR("Instance a scene file as a Node. Creates an inherited scene if no root node exists."));
+	tb->set_shortcut(ED_GET_SHORTCUT("scene_tree/instance_scene"));
+	filter_hbc->add_child(tb);
+	button_instance = tb;
 
 	tb = memnew(ToolButton);
 	// tb->connect("pressed", this, "_tool_selected", make_binds(TOOL_INSTANCE, false));
