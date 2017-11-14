@@ -525,7 +525,7 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 
 		const Node *_node = dynamic_cast<const Node*>(this);
 		if (_node)
-			_node_name = String(_node->get_name());
+			_node_name = _node->get_name();
 
 		p_list->push_back(PropertyInfo(Variant::NIL, _node_name, PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
 		script_instance->get_property_list(p_list);
