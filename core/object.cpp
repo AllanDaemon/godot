@@ -40,7 +40,7 @@
 
 #include <cassert>
 #include "scene/main/node.h"
-
+	
 #ifdef DEBUG_ENABLED
 
 struct _ObjectDebugLock {
@@ -601,7 +601,7 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 			NodePath node_path = NodePath(script_instance->get_script()->get_path());
 		}
 
-		Node *_node = dynamic_cast<Node*>(this);
+		const Node *_node = dynamic_cast<const Node*>(this);
 		String _node_name = String("Script Variables");
 		if (_node)
 			_node_name = String(_node->get_name());
