@@ -39,6 +39,7 @@
 #include "translation.h"
 
 #include <cassert>
+#include "scene/main/node.h"
 
 #ifdef DEBUG_ENABLED
 
