@@ -550,6 +550,9 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 
 		OS::get_singleton()->print("REA Obj\tthis = %p\n", this); 
 		OS::get_singleton()->print("REA Obj\tscript_instance = %p\n", script_instance); 
+		OS::get_singleton()->print(
+			"REA Obj\tthis->get_class() = %s\n",
+			this->get_class().utf8().get_data());
 
 		OS::get_singleton()->print(
 			"REA Obj\tscript_instance->get_script()->get_name() = %s\n",
