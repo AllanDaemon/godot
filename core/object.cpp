@@ -37,6 +37,7 @@
 #include "resource.h"
 #include "script_language.h"
 #include "translation.h"
+#include "scene/main/node.h"
 
 #ifdef DEBUG_ENABLED
 
