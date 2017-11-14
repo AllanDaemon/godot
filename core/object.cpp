@@ -599,11 +599,16 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 
 			NodePath node_path = NodePath(script_instance->get_script()->get_path());
 		}
+
+		Node *_node = dynamic_cast<Node*>(this);
+		String _node_name = String("Script Variables");
+		if (_node)
+			_node_name = String(_node->get_name());
 		
 		// #if 0
 		// p_list->push_back(PropertyInfo(Variant::NIL, "Script Variables", PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
 		// p_list->push_back(PropertyInfo(Variant::NIL, script_instance->get_script()->get_path().utf8().get_data(), PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
-		p_list->push_back(PropertyInfo(Variant::NIL, this->get_name().data_unique_pointer(), PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
+		p_list->push_back(PropertyInfo(Variant::NIL, _node_name, PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
 
 		script_instance->get_property_list(p_list);
 		// #endif
