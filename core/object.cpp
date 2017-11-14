@@ -522,7 +522,6 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 
 	if (script_instance && p_reversed) {
 		String _node_name = String("Script Variables");
-
 		const Node *_node = dynamic_cast<const Node*>(this);
 		if (_node)
 			_node_name = _node->get_name();
@@ -543,7 +542,11 @@ void Object::get_property_list(List<PropertyInfo> *p_list, bool p_reversed) cons
 	if (!metadata.empty())
 		p_list->push_back(PropertyInfo(Variant::DICTIONARY, "__meta__", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NOEDITOR | PROPERTY_USAGE_STORE_IF_NONZERO));
 	if (script_instance && !p_reversed) {
-		p_list->push_back(PropertyInfo(Variant::NIL, "Script Variables", PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
+		String _node_name = String("Script Variables");
+		const Node *_node = dynamic_cast<const Node*>(this);
+		if (_node)
+			_node_name = _node->get_name();
+		p_list->push_back(PropertyInfo(Variant::NIL, _node_name, PROPERTY_HINT_NONE, String(), PROPERTY_USAGE_CATEGORY));
 		script_instance->get_property_list(p_list);
 	}
 }
