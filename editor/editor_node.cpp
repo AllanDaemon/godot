@@ -141,7 +141,7 @@ void EditorNode::_update_scene_tabs() {
 	}
 
 	/// CREATE + BUTTON HERE
-	scene_tabs->add_tab("", gui_base->get_icon("Add", "EditorIcons"));
+	// scene_tabs->add_tab("", gui_base->get_icon("Add", "EditorIcons"));
 
 	scene_tabs->set_current_tab(editor_data.get_edited_scene());
 	scene_tabs->ensure_tab_visible(editor_data.get_edited_scene());
@@ -4881,7 +4881,6 @@ EditorNode::EditorNode() {
 	scene_tabs->add_style_override("tab_bg", gui_base->get_stylebox("SceneTabBG", "EditorStyles"));
 	scene_tabs->add_tab("unsaved");
 	scene_tabs->set_tab_align(Tabs::ALIGN_LEFT);
-	scene_tabs->add_tab("", gui_base->get_icon("Add", "EditorIcons"));
 	scene_tabs->set_tab_close_display_policy((bool(EDITOR_DEF("interface/editor/always_show_close_button_in_scene_tabs", false)) ? Tabs::CLOSE_BUTTON_SHOW_ALWAYS : Tabs::CLOSE_BUTTON_SHOW_ACTIVE_ONLY));
 	scene_tabs->set_min_width(int(EDITOR_DEF("interface/scene_tabs/minimum_width", 50)) * EDSCALE);
 	scene_tabs->connect("tab_changed", this, "_scene_tab_changed");
@@ -4893,10 +4892,19 @@ EditorNode::EditorNode() {
 	scene_tabs->connect("reposition_active_tab_request", this, "_reposition_active_tab");
 
 	HBoxContainer *tabbar_container = memnew(HBoxContainer);
+	// scene_tabs->set_h_size_flags(Control::SIZE_FILL);
 	scene_tabs->set_h_size_flags(Control::SIZE_EXPAND_FILL);
+
+	new_scene_button = memnew(ToolButton);
+	new_scene_button->set_icon(gui_base->get_icon("Add", "EditorIcons"));
+	new_scene_button->set_tooltip(TTR("Create a new scene."));
+
 
 	srt->add_child(tabbar_container);
 	tabbar_container->add_child(scene_tabs);
+	tabbar_container->add_child(new_scene_button);
+	tabbar_container->add_spacer(false);
+
 	distraction_free = memnew(ToolButton);
 	tabbar_container->add_child(distraction_free);
 	distraction_free->set_shortcut(ED_SHORTCUT("editor/distraction_free_mode", TTR("Distraction Free Mode"), KEY_MASK_CMD | KEY_MASK_SHIFT | KEY_F11));

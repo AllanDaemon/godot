@@ -218,6 +218,7 @@ private:
 	//main tabs
 
 	Tabs *scene_tabs;
+	ToolButton *new_scene_button;
 	Panel *tab_preview_panel;
 	TextureRect *tab_preview;
 	int tab_closing;
