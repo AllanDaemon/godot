@@ -2656,6 +2656,11 @@ void Node::print_stray_nodes() {
 #endif
 }
 
+void Node::queue_delete_deprecated() {
+	print_line("WARNING: queue_free was renamed to free_deferred and is now deprecated.");
+	queue_delete();
+}
+
 void Node::queue_delete() {
 
 	if (is_inside_tree()) {
@@ -2830,7 +2835,8 @@ void Node::_bind_methods() {
 
 	ClassDB::bind_method(D_METHOD("get_viewport"), &Node::get_viewport);
 
-	ClassDB::bind_method(D_METHOD("queue_free"), &Node::queue_delete);
+	ClassDB::bind_method(D_METHOD("free_deferred"), &Node::queue_delete);
+	ClassDB::bind_method(D_METHOD("queue_free"), &Node::queue_delete_deprecated);
 
 	ClassDB::bind_method(D_METHOD("request_ready"), &Node::request_ready);
 
