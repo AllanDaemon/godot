@@ -7410,7 +7410,7 @@ void GDScriptParser::_check_class_level_types(ClassNode *p_class) {
 				found_setter = true;
 				FunctionNode *setter = p_class->functions[j];
 
-				if (setter->arguments.size() != 1) {
+				if (setter->get_non_default_argument_count() != 1) {
 					_set_error("Setter function needs to receive exactly 1 argument. See '" + setter->name +
 									   "()' definition at line " + itos(setter->line) + ".",
 							v.line);
