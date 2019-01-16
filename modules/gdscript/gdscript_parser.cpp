@@ -7429,7 +7429,7 @@ void GDScriptParser::_check_class_level_types(ClassNode *p_class) {
 				found_getter = true;
 				FunctionNode *getter = p_class->functions[j];
 
-				if (getter->arguments.size() != 0) {
+				if (getter->get_non_default_argument_count() != 0) {
 					_set_error("Getter function can't receive arguments. See '" + getter->name +
 									   "()' definition at line " + itos(getter->line) + ".",
 							v.line);
